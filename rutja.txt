@@ -1,0 +1,213 @@
+Guida generica per i sistemi Linux e Unix
+
+*Premessa alla lettura di questa guida nei suoi termini:
+= Linux - con la dicitura Linux o GNU/Linux si fa sempre riferimento al kernel di sistema, mai al Sistema operativo
+= Distro - questo termine fa proprio riferimento al sistema operativo, compreso di kernel, shell
+= OS o SO - abbreviazione per Operating System oppure italianizzato in Sistema Operativo
+= $ - se un comando ha al suo inizio il simbolo del dollaro, si intende che sia eseguito senza privilegi amministrativi o di root
+= # - se un comando ha il simbolo del cancelletto al suo inizio, si intende che sia eseguito direttamente da root
+= dalla radice - inteso dalla base del filesystem, per convenzione / 
+
+- Comandi e trucchi di shell
+
+$ cd ..
+  change directory, serve per cambiare la cartella di lavoro, o a puntare la cartella di destinazione. Con $ cd .. si intende di salire di un livello.
+  $ cd /home/foo/bar -> spostarsi nella cartella bar, contenuta nella cartella di foo
+
+$ pwd
+  Letteralmente Print Working Directory -> stampa a video la cartella attuale
+
+$ whoami
+  stampa a video l'utente corrente
+
+$ ls
+  elenca gli elementi della cartella corrente, con ls -a stampa tutti gli elementi, anche i file nascosti
+
+$ cp [parametri] [elemento] [elemento] .. [destinazione]
+  copia gli elementi nella destinazione indicata come ultima opzione, ATTENZIONE! si puo' usare per clonare dei file(quid il file di destinazione non deve per forza esistere)
+  ATTENZIONE!2 se si sta passando una cartella, ricordarsi di mettere il parametro -R (recursive), per passare ricorsivamente i file e le cartelle sottostanti
+  parametri accetti:
+  -i -> interactive, chiede conferma per ogni singolo file 
+  -v -> verbose, stampa a video ogni cosa che fa 
+  -f -> force, forza la copia 
+
+$ mv [elemento] [elemento] .. [destinazione]
+  sposta gli elementi nella destinazione indicata messa per ultima nella coda, come $ cp, quindi segue la stessa sintassi
+
+$ mkdir [nomecartella]
+  crea una cartella nella directory corrente 
+  
+$ touch [nomefile]
+  crea un file, a discrezione dell'utente l'estensione
+
+$ rm [parametri] [elemento] [elemento] ..
+  rimozione di uno o piu' file, usa gli stessi parametri di cp 
+
+$ tail [file]
+  mostra le ultime 10 righe (se possibile interpretarle) del file 
+
+$ head [file]
+  mostra le prime 10 righe (se possibile interpretarle) del file 
+
+$ vi 
+  editor di testo presente in ogni shell unix. Seguira' capitolo a parte per l'uso.
+
+$ dd if=[file in input] of=[file in out] bs=[blocksize di trasferimento] status=progress
+  comando utile per fare le copie binarie di file, partizioni, clonazione... si inserisce in if il file di origine, of la sua destinazione, la grandezza dei blocchi da traferire in byte e lo status permette di vedere 
+  lo stato dei progressi, perche' di base dd e' un comando silente
+
+$ df -h 
+  mostra lo spazio sui device, in unita' leggibili
+
+$ du -h 
+  mostra lo spazio occupato dalle varie directory 
+
+# e2fsck /dev/sdxy
+  deframmentatore e check per i filesystem ext2/3/4, indicare sempre il device o la partizione cui si vuole eseguire il check, es /dev/sda1
+
+$ find [directory] -name "*.*"
+  ricerca a partire dalla directory designata file cui corrispondono secondo il pattern specificato. Vedere capitolo dedicato.
+
+$ free -h 
+  mostra lo spazio libero su disco, con unita' human readable
+
+$ [command] help
+  mostra la guida del comando 
+
+$ man [command]
+  mostra il manuale del comando 
+
+$ top
+  mostra i processi in esecuzione
+ 
+$ lspci
+  elenca tutti i dispositivi pci attaccati
+
+$ lsusb
+  elenca tutti i dispositivi usb attaccati e rilevati
+
+# swapon /dev/sdxy 
+  attiva la partizione di swap 
+
+# swapoff /dev/sdxy 
+  disattiva la partizione di swap 
+  
+# passwd [username]
+  cambio password per lo user indicato. Se non indicato, fa il cambio per l'utente di root 
+
+$ pkill [nomeprocesso]
+  uccide il processo in esecuzione 
+
+$ kill PID
+  uccide il processo con il PID indicato 
+
+$ killall -9 [nomeprocesso]
+  uccide tutta l'alberatura dei processi con il nomeprocesso associato
+
+$ poweroff
+  spegne la macchina, ATTENZIONE! non tutte le distro hanno questo comando in lista 
+
+# adduser [username]
+  aggiunge l'utente indicato, ricordarsi di dare passwd [username] per impostare la password e mettere in sicurezza 
+
+# usermod -a -G [groupname] [username]
+  aggiunge l'utente al gruppo selezionato, uso classico e' aggiungere l'utente al gruppo wheel per poter usufruire del comando sudo 
+  
+# gpasswd -d [username] [groupname]
+  rimuove l'utente dal gruppo
+
+# modprobe [parametro] [nomemodulo]
+  questo comando permette di montare/smontare moduli del kernel o driver
+  passando il parametro -r si forza la rimozione del modulo o del driver
+
+$ wget [url]
+  scarica il file remoto nella attuale directory 
+
+$ bzip2 -z filename
+  comprime filename con estensione .bzip 
+
+$ bzip2 -d filename 
+  decomprime lo zip
+
+$ chmod [parametri] [elemento] [elemento] ..
+  permette di cambiare i permessi su cartelle, file anche in maniera multipla.
+  ATTENZIONE! se si cambiano i permessi sulle cartelle, ricordarsi di dare il parametro -R per cambiare ricorsivamente anche per gli elementi sottostanti all'interno di esse
+  Seguire la sezione apposita per la spiegazione nel dettaglio.
+
+$ clear
+  pulisce l'output sul terminale
+
+$ echo "messaggio"
+  stampa a schermo il messaggio passato
+
+$ grep 'pattern' file.txt
+  permette di cercare il pattern all'interno del file di testo 
+
+$ history
+  mostra la cronologia dei comandi dati da terminale 
+
+$ ssh [username]@[indirizzo] -p [porta] 
+  connessione sicura usando l'username esistente sulla macchina di destinazione, con la porta specifica. Se non specificata la porta(senza passare il parametro), sara' usata la porta standard (porta 22)
+
+$ scp -p [porta] [file] [username]@[indirizzo]:[path destinazione]
+  sfruttando una connessione ssh, questo comando effettua una copia di un file verso la path di destinazione(va specificata per intero a partire dalla radice), come per ssh se il parametro della porta non viene passato, usera' 
+  la standard.
+
+- Package Managers comuni
+
+Dal 1992 l'ambiente delle distro linux si e' ramificato in una moltitudine di os, ma sostanzialmente oggi le distro sono basate sulle seguenti famiglie:
+1. Debian derivate
+2. Red Hat derivate
+3. Slackware derivate
+4. Arch derivate
+5. Gentoo derivate
+6. LFS - Linux From Scratch
+
+I package manager seguono sempre questa politica di esecuzione:
+1] blocco esclusivo del programma per impedire la contemporaneita' delle istanze
+2] download in parallelo(2 o 3, dipende dai package manager) dei pacchetti dalle repository indicate nei file di configurazione (sempre che non siano gia' tutti in locale)
+3] installazione dei pacchetti e chiusura
+
+Solo l'aggiornamento del kernel richiede il riavvio della macchina, per poter scaricare dalla memoria in esecuzione l'attuale e tirare su il nuovo.
+
+1. Debian
+E' una delle famiglie di distro piu' prolifiche nel panorama GNU/Linux, e una delle sue derivate piu' famose e' sicuramente Ubuntu Linux, con sui condivide
+il package manager: aptitude.
+Di seguito i comandi base:
+$ sudo apt-get update
+      sincronizzazione elenco pacchetti con i repository per controllare se ci sono pacchetti nuovi da aggiornare
+$ sudo apt-get upgrade
+      esegue il download dei pacchetti da aggiornare e li installa
+$ sudo apt-get full-upgrade
+      esegue il download dei pacchetti da aggiornare e li installa ricostruendo le dipendenze inverse dei pacchetti interessati
+$ sudo apt-get install [package] [package] ..
+      esegue il download e l'installazione (sempre che il/i pacchetto/i non sia/no gia' in locale, altrimenti passa all'installazione diretta)
+$ sudo apt-get remove [package] [package] ..
+      esegue la rimozione dei paccetti indicati
+$ sudo apt-get purge [package] [package] ..
+      esegue la rimozione dei pacchetti indicati, rimuovendo anche file di configurazione e le dipendenze inverse, questo comando va dato con con criterio
+$ sudo apt-cache search [package]
+      esegue la ricerca del nome del pacchetto e nella sua descrizione sul database locale
+$ sudo apt-get check
+      esegue un controllo sanitario su tutti i pacchetti installati di sistema e segnala eventuali problematiche
+$ sudo apt-get clean
+      esegue una pulizia della cache locale di aptitude
+$ sudo apt-get autoremove
+      esegue una rimozione sicura di pacchetti, dipendenze orfane e dei vecchi kernel, conservando almeno le ultime 3 release (da lanciare almeno una volta ogni update)
+
+n.b. Dalla Debian 8 a salire e dalla Ubuntu 16.04 la dicitura apt-get e' stata condensata in apt, ma i comandi forniti pocanzi sono altrettanto validia
+n.b.2 upgrade, full-upgrade, install, remove, purge, autoremove accettano il parametro -y per la conferma automatica delle operazioni.
+
+Possibili problemi e possibili risoluzioni
+Apt rarmente da' problemi, ma quando succede e' per poche semplici ragioni:
+- spazio esaurito sul device
+        liberare spazio manualmente senza passare per apt, visto che reiterebbe lo stesso errore, al peggio, fare unresize offline della partizione di root
+- mancata connessione ad internet o repository che da' 404 (repo dismessa)
+- pacchetti danneggiati a causa dell'interruzione del processo di installazione dopo il download
+        in questo caso eseguire le istruzioni a video sul messaggio di errore cui potrebbero suggerire la seguente fila di comandi:
+        $ sudo dpkg --configure -a
+        $ sudo apt install -f
+        $ sudo apt update
+          [serve solo come controllo per vedere se ripresenta l'errore, in caso di errore ripetere con anche autoremove e check]
+        $ sudo apt upgrade -y
+
