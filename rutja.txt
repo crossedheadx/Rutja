@@ -6,6 +6,7 @@ Guida generica per i sistemi Linux e Unix
 = OS o SO - abbreviazione per Operating System oppure italianizzato in Sistema Operativo
 = $ - se un comando ha al suo inizio il simbolo del dollaro, si intende che sia eseguito senza privilegi amministrativi o di root
 = # - se un comando ha il simbolo del cancelletto al suo inizio, si intende che sia eseguito direttamente da root
+= CLI / cli - Command Line Interface, la riga di comando o per meglio dire il terminale 
 = dalla radice - inteso dalla base del filesystem, per convenzione / 
 
 - Comandi e trucchi di shell
@@ -153,6 +154,91 @@ $ scp -p [porta] [file] [username]@[indirizzo]:[path destinazione]
   sfruttando una connessione ssh, questo comando effettua una copia di un file verso la path di destinazione(va specificata per intero a partire dalla radice), come per ssh se il parametro della porta non viene passato, usera' 
   la standard.
 
+$ sh script.sh 
+  uno dei due modi per eseguire uno script di shell
+
+$ ./eseguibile
+  metodo per eseguire un eseguibile, o anche uno script di shell  
+
+- Scorciatoie da tastiera
+  La shell ha preimplementate una serie di scorciatoie da tastiera universali che permettono di muoversi agilmente in CLI
+
+  CTRL + C 
+    manda un segnale di interruzione [interrupt] che interrompe l'attuale esecuzione in shell
+  
+  CTRL + Z
+    manda in pausa [zombie process]  l'attuale esecuzione, ricordarsi di riprenderlo dando da terminale $ fg [nomeprocesso], altrimenti $ kill 
+
+  CTRL + D 
+    logout dalla shell
+
+  CTRL + R 
+    ricerca rapida nella storia dei comandi dati vai cli 
+
+  CTRL + L 
+    pulisce la shell dall'output 
+
+  CTRL + U 
+    cancella i caratteri dalla posizione corrente fino all'inizio della riga. Utile quando si digitano le password.
+
+  TAB
+    esegue l'autocompletamento se il comando viene riconosciuto
+
+- chmod nel dettaglio 
+Come detto precedentemente, chmod segue la sintassi:
+  $ chmod [parametri] [elemento] [elemento]
+I parametri possono essere dichiarati in due modi completamente separati, ovvero in maniera numerica o con specifici caratteri.
+  > Parametri numerici:
+    
+- vi/vim
+  Vi o vim(vimproved) e' uno dei piu' potenti editor di testo e IDE a cli che si possano usare in ambiente Unix, non di facile utilizzo di primo acchito, ma prendendoci la mano permette di fare modifiche e analisi di file molto rapidamente
+  senza eseguire modifiche e/o errori casuali.
+  Segue una sintassi di comandi molto precisa, poiche' manda l'editor in una modalita' ben precisa.
+  Appena avviato, vi e' in modalita' neutra, non eseguira' alcuna modifica sul file affinche' non verra' variata la modalita', lo spostamento del cursore funziona con le frecce direzionali con vim, e con HJKL con vi che corrispondono a 
+  sinistra-giu'-su-destra.
+
+  i = modalita' inserimento
+
+  a = modalita' inserimento
+ 
+  ESC = disinserisci l'attuale modalita'
+  
+  :w [pathfile] = scrivi il file, se il pathfile e' vuoto, verra' scritto sul disco nella posizione corrente 
+  
+  :q = esci da vi 
+
+  /[pattern] = cerca il pattern dalla attuale posizione in avanti
+
+  ?[pattern] = cerca il pattern dalla posizione attuale indietro
+
+  f[occorrenza] = cerca la prima occorrenza successiva alla posizione corrente 
+
+  F[occorrenza] = come la precedente, ma a ritroso
+
+  v = entra in modalita' visuale, serve per evidenziare il testo 
+
+  y = copia il testo precedentemente selezionato 
+
+  x = taglia il testo precedentemente selezionato 
+
+  p = incolla il testo alla posizione attuale
+
+  u = annulla 
+
+  . = ripete l'ultimo comando dato 
+
+  u = annulla 
+
+  . = ripete l'ultimo comando dato 
+
+  E' possibile combinare alcuni comandi, es. :wq => scrive il file su disco e poi esce
+
+  u = annulla 
+
+  . = ripete l'ultimo comando dato 
+
+
+
 - Package Managers comuni
 
 Dal 1992 l'ambiente delle distro linux si e' ramificato in una moltitudine di os, ma sostanzialmente oggi le distro sono basate sulle seguenti famiglie:
@@ -195,7 +281,7 @@ $ sudo apt-get clean
 $ sudo apt-get autoremove
       esegue una rimozione sicura di pacchetti, dipendenze orfane e dei vecchi kernel, conservando almeno le ultime 3 release (da lanciare almeno una volta ogni update)
 
-n.b. Dalla Debian 8 a salire e dalla Ubuntu 16.04 la dicitura apt-get e' stata condensata in apt, ma i comandi forniti pocanzi sono altrettanto validia
+n.b. Dalla Debian 8 a salire e dalla Ubuntu 16.04 la dicitura apt-get e' stata condensata in apt, ma i comandi forniti pocanzi sono altrettanto validi
 n.b.2 upgrade, full-upgrade, install, remove, purge, autoremove accettano il parametro -y per la conferma automatica delle operazioni.
 
 Possibili problemi e possibili risoluzioni
