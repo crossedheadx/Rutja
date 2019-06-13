@@ -316,7 +316,7 @@ Solo l'aggiornamento del kernel richiede il riavvio della macchina, per poter sc
 
 1. Debian
 E' una delle famiglie di distro piu' prolifiche nel panorama GNU/Linux, e una delle sue derivate piu' famose e' sicuramente Ubuntu Linux, con sui condivide
-il package manager: aptitude.
+il package manager: aptitude con i suoi pacchetti .deb.
 Di seguito i comandi base:
 $ sudo apt-get update
       sincronizzazione elenco pacchetti con i repository per controllare se ci sono pacchetti nuovi da aggiornare
@@ -354,4 +354,45 @@ Apt rarmente da' problemi, ma quando succede e' per poche semplici ragioni:
         $ sudo apt update
           [serve solo come controllo per vedere se ripresenta l'errore, in caso di errore ripetere con anche autoremove e check]
         $ sudo apt upgrade -y
+
+2. Red Hat 
+Nella sua quasi trentennale storia, Red Hat ha dato alla luce 3 diversi package managers che gestiscono i proprio pacchetti .rpm.
+Il primo e' rpm, primo ad essere stato creato ed ancora in uso ad oggi, sulle distro Fedora, RHEL e CentOS dovrebbe esserci ancora essendo le prime due ufficiali Red Hat e la terza una versione comunitaria della 
+seconda.
+> rpm
+$ sudo rpm -i (--nodeps) [package] 
+  installa il pacchetto selezionato 
+$ sudo rpm -u [package]
+  aggiorna il pacchetto selezionato 
+$ sudo rpm -e [package]
+  rimuove il pacchetto selezionato 
+$ rpm -q [package]
+  esegue una ricerca sul pacchetto indicato 
+$ sudo rpm-initdb $ sudo rpm-rebuilddb
+  entrambi i comandi servono per ricostruire il database dei pacchetti a seguito di anomalie 
+
+> yum 
+nato originarinamente per Yellow Dog Linux, e' stato rapidamente adottato negli anni come package manager ufficiale su buona parte delle RH derived.
+$ sudo yum install [package]
+  installazione pacchetto/i selezionati
+$ sudo yum remove [package]
+  rimuove il pacchetto o i pacchetti selezionati
+$ sudo yum update 
+  installazione diretta delle nuove versioni dei pacchetti 
+$ sudo yum check-update 
+  cerca nei repository la presenza di nuovi pacchetti 
+$ sudo yum search [package]
+  ricerca del pacchetto all'interno del db locale 
+$ sudo yum list installed [package]
+  ricerca se il pacchetto e' installato nel sistema 
+
+> dnf
+il piu' recente dei package managers di casa RH 
+mantiene gli stessi comandi di yum, pero' con la differenza che al posto in invocare yum nel comando si usera' dnf 
+
+> zypper
+package manager di SuSE e openSuSE, sfrutta gli stessi pacchetti rpm, ma ottimizzati solo per queste distro tedesche, il cui gestore di sistema YaST pilota fino al kernel.
+Anche zypper ha la stessa sintassi di comandi ereditata da yum.
+
+
 
