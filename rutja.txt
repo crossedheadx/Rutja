@@ -189,7 +189,56 @@ Come detto precedentemente, chmod segue la sintassi:
   $ chmod [parametri] [elemento] [elemento]
 I parametri possono essere dichiarati in due modi completamente separati, ovvero in maniera numerica o con specifici caratteri.
   > Parametri numerici:
+    valore binario        valore decimale       tipo permesso
+        111                     7               read write execute
+        110                     6               read write 
+        101                     5               read       execute
+        100                     4               read 
+        011                     3                    write execute
+        010                     2                    write 
+        001                     1                          execute
+        000                     0                     null
+
+    i valori sono posizionati in una terzina, cui ognuna indichera' specificatamente i permessi a: Utente-Gruppo-Altri(pubblico accesso)
+    es:
+      $ chmod 710 file 
+        questo file non sara' accessibile in alcun modo da altri utenti, sara' possibile eseguirlo solo se si appartiene al gruppo e l'utente proprietario potra' leggerlo, scriverci dentro ed eseguirlo 
+
+      $ chmod -R 777 cartella 
+        a questa cartella sara' dato accesso completo in maniera ricorsiva a tutti (-R = ricorsivamente anche nelle sottocartelle)
+  
+  > Parametri a caratteri:
+    Un secondo metodo per indicare i permessi da concedere a file e/o cartelle e' ricorrendo al metodo letterale:
+
+    a = all, tutti 
+
+    g = gruppo 
+
+    o = others, altri utenti 
+
+    + = aggiunta permesso/i 
+
+    - = rimozione permesso/i 
     
+    = = imposta i permessi rimuovendo quelli gia' concessi eventualmente e non specificati
+
+    r = lettura 
+
+    w = scrittura
+
+    x = esecuzione 
+
+    es:
+      chmod u+x file.sh 
+      si aggiungono i permessi di esecuzione su file.sh 
+
+      chmod o-w file.sh 
+      si rimuovono i permessi di scrittura agli altri utenti 
+
+      chmod g+x, u=rwx, o-rw file.sh 
+      si permette al gruppo di eseguire il file, al proprietario si mantengono tutti i diritti, e agli altri utenti sono stati tolti i diritti di lettura e scrittura 
+
+
 - vi/vim
   Vi o vim(vimproved) e' uno dei piu' potenti editor di testo e IDE a cli che si possano usare in ambiente Unix, non di facile utilizzo di primo acchito, ma prendendoci la mano permette di fare modifiche e analisi di file molto rapidamente
   senza eseguire modifiche e/o errori casuali.
