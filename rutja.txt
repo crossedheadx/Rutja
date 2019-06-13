@@ -286,7 +286,16 @@ I parametri possono essere dichiarati in due modi completamente separati, ovvero
 
   . = ripete l'ultimo comando dato 
 
+- Script di shell 
+  Gli script di shell permetto un ottimo grado di automatismo dei OS unix, la loro struttura nel dettaglio e' molto semplice:
+  si crea un file con estensione .sh 
+  come prima riga inserire l'interprete della shell con la seguente sintassi:
 
+  #!/bin/bash 
+ 
+  Ovviamente, se non si usa la bash come shell di default, ma per esempio zsh, bastera' cambiare bash con il nome dell'eseguibile della shell associata tipo zsh.
+  Poi di seguito bastera' inserire i comandi che dovra' eseguire, come se li stessi dando normalmente da terminale.
+  Esistono anche delle strutture di controllo, per fare dei controlli condizionali e check sulle stringhe.
 
 - Package Managers comuni
 
