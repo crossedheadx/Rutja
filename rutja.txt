@@ -464,3 +464,26 @@ $ emerge --searchdesc pdf
   aggiorna il sistema, prestare molta attenzione che le flag siano settate bene, onde evitare problemi 
 # emerge --update --deep --with-bdeps=y --newuse @world 
   esegue l'aggiornamento completo di sistema e ricostruisce tutte le dipendenze necessarie ricompilandole 
+
+Entropy
+E' un wrapper che si appoggia a Portage, questo e' il package manager che si trova ufficialmente su Sabayon Linux, distro italiana basata su Gentoo, con il grande pregio di essere 
+molto piu' semplice in fase di installazione rispetto alla distro madre e di essere 'out of the box' o 'chiavi in mano' appena installata.
+# equo update 
+  sincronizza i pacchetti da aggiornare 
+# equo install [package] --ask 
+  installa i pacchetti selezionati, ask e' opzionale, ma consigliato  
+# equo cleanup 
+  pulisce la cache dei pacchetti 
+# equo search [package] 
+  esegue la ricerca del pacchetto indicato 
+# equo remove [package] --ask 
+  esegue la rimozione del pacchetto designato 
+# equo upgrade --ask 
+  esegue l'aggionamento dei pacchetti, dopo l'update 
+ 
+6. Linux From Scratch 
+Formalmente questa non e' una distribuzione, ma e' il kit di montaggio per chi vuole fare la propria distro linux da zero partendo dal kernel vanilla. Qui sostanzialmente non 
+esiste un vero e proprio package manager, poiche' essendo fatto il sistema assolutamente da 0, ogni particolarita', viene documentata sul sito di sviluppo. Esiste una guida ufficiale 
+a LFS aggiornata periodicamente. Tratta ogni singolo aspetto di un OS del pinguino. 
+http://www.linuxfromscratch.org/
+
