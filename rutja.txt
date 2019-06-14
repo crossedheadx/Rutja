@@ -394,5 +394,24 @@ mantiene gli stessi comandi di yum, pero' con la differenza che al posto in invo
 package manager di SuSE e openSuSE, sfrutta gli stessi pacchetti rpm, ma ottimizzati solo per queste distro tedesche, il cui gestore di sistema YaST pilota fino al kernel.
 Anche zypper ha la stessa sintassi di comandi ereditata da yum.
 
+3. Slackware
+Slackware e' la distro piu' vecchia assieme a debian, condivide con essa la fama di distro estremamente stabile, ma al contempo presenta una piccola difficolta': la gestione dei pacchetti non cura le dipendenze di essi.
+slackpkg e' il tool piu' indicato per la gestione dei pacchetti su Slackware.
 
+# slackpkg search [package]
+  cerca il pacchetto selezionato 
+# slackpkg install [package]
+  installa il pacchetto selezionato 
+# slackpkg remove [package]
+  rimuove il pacchetto selezionato 
+# slackpkg upgrade-all 
+  aggiorna il sistema sincronizzandolo all'albero degli aggionamenti di Slackware 
+# slackpg download [package]
+  scarica il pacchetto senza installarlo
+
+4. Arch Linux 
+Distro che sta ottenendo un grande successo negli ultimi anni tra i power users, rolling release(ovvero che ogni singola novita' viene messa negli aggiornamenti, ma cio' implica una minore stabilita' di sistema), ed il suo 
+package manager pacman unisce una rapidita' ed installazione molto superiore agli altri package manager.
+
+# 
 
