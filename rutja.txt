@@ -413,5 +413,54 @@ slackpkg e' il tool piu' indicato per la gestione dei pacchetti su Slackware.
 Distro che sta ottenendo un grande successo negli ultimi anni tra i power users, rolling release(ovvero che ogni singola novita' viene messa negli aggiornamenti, ma cio' implica una minore stabilita' di sistema), ed il suo 
 package manager pacman unisce una rapidita' ed installazione molto superiore agli altri package manager.
 
-# 
+# pacman -S [package] [package] ..
+  installa i pacchetti selezionati 
+# pacman -R [package]
+  rimuove i pacchetti selezionati 
+# pacman -Rs [package]
+  rimuove i pacchetti selezionati comprese le dipendenze inverse non piu' necessarie
+# pacman -Syu
+  aggiorna i pacchetti e installa i relativi upgrade 
+$ pacman -Ss [package]
+  esegue una ricerca in database del pacchetto richiesto
+# paccache -r 
+  pulizia della cache 
 
+  >Errori e soluzioni
+  - "Failed to commit transaction (conflicting files)" error 
+    se si verifica il seguente errore:
+      error: could not prepare transaction
+      error: failed to commit transaction (conflicting files)
+      package: /path/to/file exists in filesystem
+      Errors occurred, no packages were upgraded.
+    E' perche' pacman ha rilevato un conflitto tra file, quindi per design di codice, non sovrascrivera' i file.
+    Controllare prima se altri pacchetti puntano al file (# pacman -Qo /path/to/file), e segnalare il bug. 
+  - "Failed to commit transaction (invalid or corrupted package)" error 
+    # find /var/cache/pacman/pkg/ -iname "*.part" -exec rm {} \;
+  - "Failed to init transaction (unable to lock database)" error 
+    # rm /var/lib/pacman/db.lck
+  - Reinstallazione manuale di pacman (https://wiki.archlinux.org/index.php/Pacman#Manually_reinstalling_pacman)
+    seguire la guida appuntata, e' molto piu' esplicativa e spiega dove e come mettere le mani.
+
+5. Gentoo 
+Nel panorama Linux Gentoo e' conosciuta principalmente per due cose: gli eterni tempi di compilazione dei singoli pacchetti e per le performance (se ben configurati)
+Il package manager di Gentoo e' chiamato portage e compila i pacchetti ad hoc per la macchina ove specificato. Tra tutti e' il package manager con 
+cui e' piu' facile distruggere la stabilita' del sistema.
+Sono dell'idea che nulla possa sostituire l'handbook scritto dalla comunita' (https://wiki.gentoo.org/wiki/Handbook:AMD64/), ma vediamo di condensare i comandi principali
+ATTENZIONE! perstare molta attenzione alle flag che sono impostate nel file di ompilazione di sistema, una flag settata male e il sistema sara' danneggiato!
+# emerge --sync
+  sincronizza l'elenco dei pacchetti locali con quelli remoti
+# emerge-webrsync
+  in caso di problemi causati dal firewall, questo comando esegue la stessa operazione di prima ma passando per altre porte, installando l'albero piu' recente 
+$ emerge --search pdf
+  cerca tutti i pacchetti contenetei la parola 'pdf'
+$ emerge --searchdesc pdf
+  simile al precedente, ma cerca per solo per descrizione 
+# emerge --ask [package] 
+  installa il pacchetto indicato 
+# emerge --unmerge [package]
+  rimuove il pacchetto indicato 
+# emerge --update --ask @world
+  aggiorna il sistema, prestare molta attenzione che le flag siano settate bene, onde evitare problemi 
+# emerge --update --deep --with-bdeps=y --newuse @world 
+  esegue l'aggiornamento completo di sistema e ricostruisce tutte le dipendenze necessarie ricompilandole 
