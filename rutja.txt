@@ -502,5 +502,10 @@ In questa sezione andro' ad elencare alcune utilities utili sia in ambito deskto
   Disponibile per tutte le distro, con la sua doppia visuale su cartelle, permette anche connessioni ssh, ftp o shell sulla prima o sulla seconda finestra, o su entrambe. 
   Al suo interno ha anche un editor di testo molto basilare di nome Mcedit.
   
-    
+  partizionatori cli 
+  gdisk, fdisk, parted
+  I tre programmi sopra citati fanno sostanzialmente la stessa identica cosa: preparano geometricamente le partizioni e creano le relative tabelle per il MBR(master boot record) GPT o UEFI, 
+  e assegnano il tipo di filesystem che andranno ad ospitare, ma non formattano le partizioni. Queste andranno create a parte.
+
+  
 
