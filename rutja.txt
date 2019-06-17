@@ -542,6 +542,11 @@ In questa sezione andro' ad elencare alcune utilities utili sia in ambito deskto
   # umount -R /destinazione 
   Smonta la partizione o il dispositivo designato.
 
+  versionamento software git
+  Creato dal padre di Linux, git e' usato principalmente per lo sviluppo software, e per ospitare buona parte dei progetti open source della rete.
+
+  
+
 - Concetti 
 > Struttura delle cartelle 
 Cio' che segue e' la struttura generica del FS, puo' variare da distro a disto con cartelle extra o alcune di queste non utilizzate
@@ -619,17 +624,55 @@ Cio' che segue e' la struttura generica del FS, puo' variare da distro a disto c
           |
           |-/lock - contiene i file di blocco che tengono traccia delle risorse correntemente in uso
           |
-          |-/log 
+          |-/log - contiene i file di log di molti applicativi di sistema, controllare qui eventuali messaggi di errore 
           |
-          |-/mail
+          |-/mail - contiene i file mailbox per i servizi di posta via internet che di sistema, per alcune distro questa cartella e' stata deprecata ed e' stata spostata su /var/spool 
           |
-          |-/opt 
+          |-/opt - contiene dati variabili derivati dalla cartella /opt 
           |
-          |-/run 
+          |-/run - collegamento simbolico verso la cartella /run, la cui funzione e' identica  
           |
-          |-/spool
+          |-/spool - cartella di passaggio per i file che sono in attesa di essere processati, come i file di stampa o i file che contengono email ...
           ------
                 |
-                |-/mail -
+                |-/mail - deprecata, era la cartella di riferimento per le mailboxes 
           |
-          |-/tmp 
+          |-/tmp - cartella per il piazzamento dei file temporanei che devono essere preservati tra i reboot. 
+
+> Devices
+In Unix, i dispositivi esterni, come HDD, chiavette usb, dispositivi ottici, ecc. sono visti come file da montare e successivamente delle cartelle montate.
+
+> File nascosti 
+La notazione POSIX standard definisce un file "nascosto" come un file che come primo carattere ha il punto .
+Per logica, ogni file/cartella che ha come primo carattere un punto non sara' visibile all'utente.
+
+> Grafica
+Come visto in precedenza, il server grafico e' un programma a se' stante, non e' essenziale per avere il sistema in funzione, visto che quando e' in cli usa dei driver generici a bassa risoluzione in 
+modalita' failsafe. E' molto raro che questa modalita' non funzioni.
+I server grafici al momento sono soltanto due: 
+1. Xorg
+  primo progetto per un server grafico alla base di tutti sistemi grafici moderni in ambienti FOSS, il progetto risale agli anni 80, e da allora e' rimasto contestualmente alla versione 11 
+2. Wayland
+  dovrebbe essere il progetto successore a xorg, creato in anni recenti e sponsorizzato da Red Hat, in questo momento gira su in numero limitato di distro a causa della sua non eccessiva diffusione
+  e della compatibilita' delle varie librerie con esso. Fedora, Red Hat sono i principali playground ove provare nativamente questa soluzione.
+
+Ai server grafici successivamente si appoggiano i window manager o (la maggioranza dei casi) i desktop environment.
+La differenza tra i due sono sostanzialmente pochi fattori:
+- Window Managers sostanzialmente sono demandati a fare i decoratori delle finestre, possono essere d'appoggio ai desktop environment, sono storicamente molto piu' leggeri di quest'ultimi anche perche'
+non si portano dietro molti applicativi e funzionalita', anzi, spesso non ne hanno, se non poche ma essenziali funzioni. Spesso e volentieri sono semplicemente coposti da pochissimi file di configurazione 
+che indicano come disegnare la finestra.
+Ve ne sono di 4 tipi:
+  Composing:
+  Stacking: 
+  Tiling: le finestre non possono essere sovrapposte ma affiancate, appunto tiling -> piastrellate
+  Dynamic: permette lo switch dinamico tra tiling e floating windows
+
+- Desktop Environment, offrono un'esperienza desktop piu' completa, con essi spesso ci sono applicativi e programmi esclusivi che permettono all'utente di avere appena installati una moltitudine di funzioni 
+che gestiscono anche vari aspetti di sistema, come ad esempio il gestore di rete, dell'energia, risoluzione dello schermo, decoratori e temi, frontend per l'audio ecc.
+I principali DE son:  
+  KDE
+  GNOME
+  Cinnamon
+  MATE
+  XFCE
+  LXQt
