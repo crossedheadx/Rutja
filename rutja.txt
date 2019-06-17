@@ -87,6 +87,9 @@ $ lspci
 $ lsusb
   elenca tutti i dispositivi usb attaccati e rilevati
 
+$ lsblk
+  elenca tutte le partizioni rilevate dal SO, mountpoint(ovvero dove sono state montate) e la loro dimensione
+
 # swapon /dev/sdxy 
   attiva la partizione di swap 
 
@@ -442,6 +445,9 @@ $ pacman -Ss [package]
   - Reinstallazione manuale di pacman (https://wiki.archlinux.org/index.php/Pacman#Manually_reinstalling_pacman)
     seguire la guida appuntata, e' molto piu' esplicativa e spiega dove e come mettere le mani.
 
+Ben inteso che questa parte e' veramente una microscopica frazione rispetto alla piu' completa ed esaustiva archwiki che copre molti altri aspetti.
+Nel dubbio consultare https://wiki.archlinux.org
+
 5. Gentoo 
 Nel panorama Linux Gentoo e' conosciuta principalmente per due cose: gli eterni tempi di compilazione dei singoli pacchetti e per le performance (se ben configurati)
 Il package manager di Gentoo e' chiamato portage e compila i pacchetti ad hoc per la macchina ove specificato. Tra tutti e' il package manager con 
@@ -486,4 +492,15 @@ Formalmente questa non e' una distribuzione, ma e' il kit di montaggio per chi v
 esiste un vero e proprio package manager, poiche' essendo fatto il sistema assolutamente da 0, ogni particolarita', viene documentata sul sito di sviluppo. Esiste una guida ufficiale 
 a LFS aggiornata periodicamente. Tratta ogni singolo aspetto di un OS del pinguino. 
 http://www.linuxfromscratch.org/
+
+- Programmi ed Utilities
+In questa sezione andro' ad elencare alcune utilities utili sia in ambito desktop che in ambito server, questa parte non seguira' un ordine particolare.
+ 
+  mc (Midnight Commander)
+  Clone di Norton Commander.
+  Questo file manager e' esclusivamente a riga di comando, molto utile nell'uso di sistemi a risorse limitate o ad uso server. Anche per fare backup al volo risulta essere molto comodo.
+  Disponibile per tutte le distro, con la sua doppia visuale su cartelle, permette anche connessioni ssh, ftp o shell sulla prima o sulla seconda finestra, o su entrambe. 
+  Al suo interno ha anche un editor di testo molto basilare di nome Mcedit.
+  
+    
 
