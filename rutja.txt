@@ -542,4 +542,94 @@ In questa sezione andro' ad elencare alcune utilities utili sia in ambito deskto
   # umount -R /destinazione 
   Smonta la partizione o il dispositivo designato.
 
-- Concetti
+- Concetti 
+> Struttura delle cartelle 
+Cio' che segue e' la struttura generica del FS, puo' variare da distro a disto con cartelle extra o alcune di queste non utilizzate
+/ - root, contiene tutte le cartelle, e l'intero FS di sistema  
+ ----
+    |
+    |-/bin - contiene convenzionalmente tutti i binari necessari per l'avvio in single user e per tutti gli utenti i comandi come cat, ls, cp ...
+    |
+    |-/boot - contiene i kernel di sistema, initrd e il bootloader
+    |
+    |-/dev - contiene tutti i dispositivi e i virtuali come /null /zero /random /tty ...
+    |
+    |-/etc - Host-specific system-wide configuration files, contiene i file di configurazione di sistema (es. di ssh, apache, nginx...)
+    ------
+          |
+          |-/opt - contiene file di configurazione di /opt per i pacchetti di add-on 
+          |
+          |-/sgml - contiene i file di configurazione e cataloghi per software che processano SGML
+          |
+          |-/X11 - contiene i file di configurazione per il server grafico X11, la base per l'interfaccia grafica
+          |
+          |-/xml - contiene i file di configurazione e cataloghi per software che processano XML
+    |
+    |-/home - qui sono contenute tutte le cartelle utente con le relative configurazioni e impostazioni per la singola sessione utente 
+    |
+    |-/lib - contiene le librerie essenziali per l'esecuzione dei binari in /bin e /sbin 
+    |
+    |-/media - in questa cartella vengono messi i device montati automaticamente dall'OS o convezionalmente quelli che vengono montati manualmente 
+    |
+    |-/mnt - contiene i filesystem montati temporaneamente
+    |
+    |-/opt - cartella che contiene i pacchetti software statici 
+    |
+    |-/proc - cartelle contenente un filesystem statico dove fornisce informazioni sui processi e kernel sotto forma di file. Montato al volo viene popolato dal sistema. Richiamata, puo' fornire anche info 
+    |         di sistema.
+    |-/root - L'equivalente della cartella home, ma solo per l'utente root(amministratore di sistema completo)
+    |
+    |-/run - contiene variabili eseguite runtime e informazioni di sistema che descrivono il sistema da quando e' stato avviato 
+    |
+    |-/sbin - contiene i binari essenziali di sistema come per esempio fsck, init, route ...
+    |
+    |-/srv - contiene dati specifici come script per webserver e repository per sistemi di controllo di versione 
+    |
+    |-/sys - contiene informazioni su dispositivi di sistema, driver e alcune funzioni del kernel 
+    |
+    |-/tmp - cartella temporanea di sistema, ce n'e' una seconda anche in /var 
+    |
+    |-/usr - cartella gerarchica secondaria dopo la radice, contiene la maggior parte degli applicativi multi-utente e parte delle applicazioni
+    ------
+          |
+          |-/bin - contiene binari non essenziali ma utilizzabili da tutti gli utenti 
+          |
+          |-/include -cartella contenente gli includes standard per gli applicativi 
+          |
+          |-/lib -contiene le librerie per i binari di /usr/bin e /usr/sbin
+          |
+          |-/lib<qual> - contiene librerie specifiche architetture 32/64bit in caso di macchina che sfrutta il multiarch
+          |
+          |-/local -cartella gerarchica di terzo livello contenenti dati specifici per l'host, ha sottodirectory come bin, lib, share...
+          |
+          |-/sbin - contiene binari non essenziali di sistema, come ad esempio i demoni per i network-services
+          |
+          |-/share - contiene dati architetturalmente indipendenti condivisi col sistema 
+          |
+          |-/src - contiene codici sorgenti varii, come ad esempio i sorgenti dell'header del kernel 
+          |
+          |-/X11R6 - contiene il server grafico X versione 6 
+    |
+    |-/var - contiene file variabili cui mutano durante l'esecuzione di sistema 
+    ------
+          |
+          |-/cache - cartella ove vengono messi i file necessari alla consultazione dei programmi generati localmente 
+          |
+          |-/lib - informazioni di stato e dati persistenti che danno informazioni di esecuzione come a database, package managers ..
+          |
+          |-/lock - contiene i file di blocco che tengono traccia delle risorse correntemente in uso
+          |
+          |-/log 
+          |
+          |-/mail
+          |
+          |-/opt 
+          |
+          |-/run 
+          |
+          |-/spool
+          ------
+                |
+                |-/mail -
+          |
+          |-/tmp 
