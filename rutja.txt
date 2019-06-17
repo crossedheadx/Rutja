@@ -507,5 +507,39 @@ In questa sezione andro' ad elencare alcune utilities utili sia in ambito deskto
   I tre programmi sopra citati fanno sostanzialmente la stessa identica cosa: preparano geometricamente le partizioni e creano le relative tabelle per il MBR(master boot record) GPT o UEFI, 
   e assegnano il tipo di filesystem che andranno ad ospitare, ma non formattano le partizioni. Queste andranno create a parte.
 
+  # mkswap /dev/sdxy 
+  creera' la partizione di swap nella partizione creata in precedenza /dev/sdxy 
+  !ATTENZIONE: per i sistemi con meno di 1GB di ram seguire sempre il concetto 1:2 in fase di creazione dello spazio per la swap (1GB di RAM -> 2GB su disco per la swap), questo permettera' 
+  di avere lo spazio per mandare il sistema in ibernazione.
   
+  # swapon /dev/sdxy 
+  attivera' la patizione di swap e sara' esposta come spazio ram aggiuntivo su disco. 
 
+  # mkfs.[filesystem] [parametri] /dev/sdxy 
+  Con il seguente comando si va a creare il filesystem per la partizione indicata.
+  Mantenendo questa sintassi si puo' passare i seguenti filesystem:
+  [fs]      [tool userspace]
+  btrfs     [btrfs-progs]
+  ext*      [e2fsprogs]
+  fat       [dosfstools]
+  f2fs      [f2fs-tools]
+  hfsplus   [hfsprogs]
+  jfs       [jfsutils]
+  nilfs     [nilfs-utils]
+  ntfs      [ntfs-3g]
+  reiser4   [raiser4progs]
+  reiserfs  [raiserfsprogs]
+  udf       [udftools]
+  xfs       [xfsprogs]
+  Per poter usufruire di ognuno di questi fs elencati sopra, assicurarsi di avere il tool userspace installato in sistema (ogni tool corrisponde al pacchetto installabile).
+  *vale dagli extended dalla versione 2 alla 4, consigliato installare almeno la versione 4.
+
+  montaggio FS
+  # mount /dev/sdxy /destinazione 
+  Il comando esegue il 'montaggio' in una cartella del filesystem o del dispositivo nella destinazione predestinata. La destinazione deve esistere per completare l'operazione.
+
+  smontaggio FS 
+  # umount -R /destinazione 
+  Smonta la partizione o il dispositivo designato.
+
+- Concetti
