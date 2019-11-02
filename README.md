@@ -16,6 +16,3 @@ Finlandese, come il papa' di Linux: Linus Torvalds.
 Questa e' una guida creata lungo questi anni, da quando ho cominciato ad usare Linux tutti i giorni. Puo' essere considerata una sorta di collezione di mini-guide e appunti, in italiano.
 
 :D
-
-To get it in a terminal:
-$ wget https://is.gd/Exjcob 
