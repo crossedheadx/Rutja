@@ -318,7 +318,7 @@ I package manager seguono sempre questa politica di esecuzione:
 Solo l'aggiornamento del kernel richiede il riavvio della macchina, per poter scaricare dalla memoria in esecuzione l'attuale e tirare su il nuovo.
 
 1. Debian
-E' una delle famiglie di distro piu' prolifiche nel panorama GNU/Linux, e una delle sue derivate piu' famose e' sicuramente Ubuntu Linux, con sui condivide
+E' una delle famiglie di distro piu' prolifiche nel panorama GNU/Linux, e una delle sue derivate piu' famose e' sicuramente Ubuntu Linux, con cui condivide
 il package manager: aptitude con i suoi pacchetti .deb.
 Di seguito i comandi base:
 $ sudo apt-get update
@@ -342,13 +342,13 @@ $ sudo apt-get clean
 $ sudo apt-get autoremove
       esegue una rimozione sicura di pacchetti, dipendenze orfane e dei vecchi kernel, conservando almeno le ultime 3 release (da lanciare almeno una volta ogni update)
 
-n.b. Dalla Debian 8 a salire e dalla Ubuntu 16.04 la dicitura apt-get e' stata condensata in apt, ma i comandi forniti pocanzi sono altrettanto validi
+n.b. Dalla Debian 8 a salire e dalla Ubuntu 16.04 la dicitura apt-get e' stata condensata in apt, ma i comandi forniti poc'anzi sono altrettanto validi
 n.b.2 upgrade, full-upgrade, install, remove, purge, autoremove accettano il parametro -y per la conferma automatica delle operazioni.
 
 Possibili problemi e possibili risoluzioni
 Apt rarmente da' problemi, ma quando succede e' per poche semplici ragioni:
 - spazio esaurito sul device
-        liberare spazio manualmente senza passare per apt, visto che reiterebbe lo stesso errore, al peggio, fare unresize offline della partizione di root
+        liberare spazio manualmente senza passare per apt, visto che restituirebbe lo stesso errore, al peggio, fare unresize offline della partizione di root
 - mancata connessione ad internet o repository che da' 404 (repo dismessa)
 - pacchetti danneggiati a causa dell'interruzione del processo di installazione dopo il download
         in questo caso eseguire le istruzioni a video sul messaggio di errore cui potrebbero suggerire la seguente fila di comandi:
@@ -453,7 +453,7 @@ Nel panorama Linux Gentoo e' conosciuta principalmente per due cose: gli eterni 
 Il package manager di Gentoo e' chiamato portage e compila i pacchetti ad hoc per la macchina ove specificato. Tra tutti e' il package manager con 
 cui e' piu' facile distruggere la stabilita' del sistema.
 Sono dell'idea che nulla possa sostituire l'handbook scritto dalla comunita' (https://wiki.gentoo.org/wiki/Handbook:AMD64/), ma vediamo di condensare i comandi principali
-ATTENZIONE! perstare molta attenzione alle flag che sono impostate nel file di ompilazione di sistema, una flag settata male e il sistema sara' danneggiato!
+ATTENZIONE! prestare molta attenzione alle flag che sono impostate nel file di compilazione di sistema, una flag settata male e il sistema sara' danneggiato!
 # emerge --sync
   sincronizza l'elenco dei pacchetti locali con quelli remoti
 # emerge-webrsync
@@ -549,7 +549,7 @@ In questa sezione andro' ad elencare alcune utilities utili sia in ambito deskto
 
 - Concetti 
 > Struttura delle cartelle 
-Cio' che segue e' la struttura generica del FS, puo' variare da distro a disto con cartelle extra o alcune di queste non utilizzate
+Cio' che segue e' la struttura generica del FS, puo' variare da distro a distro con cartelle extra o alcune di queste non utilizzate
 / - root, contiene tutte le cartelle, e l'intero FS di sistema  
  ----
     |
@@ -654,7 +654,7 @@ I server grafici al momento sono soltanto due:
   primo progetto per un server grafico alla base di tutti sistemi grafici moderni in ambienti FOSS, il progetto risale agli anni 80, e da allora e' rimasto contestualmente alla versione 11 
 2. Wayland
   dovrebbe essere il progetto successore a xorg, creato in anni recenti e sponsorizzato da Red Hat, in questo momento gira su in numero limitato di distro a causa della sua non eccessiva diffusione
-  e della compatibilita' delle varie librerie con esso. Fedora, Red Hat sono i principali playground ove provare nativamente questa soluzione.
+  e della compatibilita' delle varie librerie con esso.
 
 Ai server grafici successivamente si appoggiano i window manager o (la maggioranza dei casi) i desktop environment.
 La differenza tra i due sono sostanzialmente pochi fattori:
